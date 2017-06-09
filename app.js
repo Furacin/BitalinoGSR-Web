@@ -23,33 +23,61 @@
     const dbRefList = dbRefObject.child('fe06b1b1-4add-41fe-b1c7-2bcc907e42d3').child('Experiencias').child('201706082356').child('Datos Graficas').child('GSR');
 //    const dbRefList = dbRefObject.child('habilidades');
     
-    var valores_fc = [];
-    
     // Sincronizar objectos con la web
     dbRefList.on('value', snap => {
         var data = snap.val();  
         
-//        valores_fc.push({title: data.title, content: data.content});
-        
-        const li = document.createElement('li'); 
-        li.innerText = data;
-        ulList.appendChild(li);
-        
         var ctx = document.getElementById('myChart').getContext('2d');
-//        ctx.height = 300;
-//        ctx.width = 300;
         var myChart = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
             datasets: [{
-              label: 'gsr',
+              label: 'Resistencia Galvánica de la piel',
               data: data,
               backgroundColor: "rgba(153,255,51,0.4)"
             }]
           }
         });
     });
+        
+    ///////////////////////////////////////////////////////////////////////////////////////
+    
+    const dbRefList2 = dbRefObject.child('fe06b1b1-4add-41fe-b1c7-2bcc907e42d3').child('Experiencias').child('201706082356').child('Datos Graficas').child('FC');
+    
+    dbRefList2.on('value', snap => {
+        var data = snap.val();  
 
+        var ctx = document.getElementById('myChart2').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            datasets: [{
+              label: 'Frecuencia Cardíaca',
+              data: data,
+              backgroundColor: "rgba(153,255,51,0.4)"
+            }]
+          }
+        });
+    });
+    
+    ///////////////////////////////////////////////////////////////////////////////////////
+    
+    const dbRefList3 = dbRefObject.child('fe06b1b1-4add-41fe-b1c7-2bcc907e42d3').child('Experiencias').child('201706082356').child('Datos Graficas').child('Temperatura');
+    
+    dbRefList3.on('value', snap => {
+        var data = snap.val();  
+        
+        var ctx = document.getElementById('myChart3').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            datasets: [{
+              label: 'Temperatura',
+              data: data,
+              backgroundColor: "rgba(153,255,51,0.4)"
+            }]
+          }
+        });
+    });
     
 }());
