@@ -20,7 +20,7 @@
     
     // Crear referencias
     const dbRefObject = firebase.database().ref().child('users');
-    const dbRefList = dbRefObject.child('fe06b1b1-4add-41fe-b1c7-2bcc907e42d3').child('Experiencias').child('201706082356').child('Datos Graficas').child('GSR');
+    const dbRefList = dbRefObject.child('fe06b1b1-4add-41fe-b1c7-2bcc907e42d3').child('Experiencias').child('201706091412').child('Datos Graficas').child('GSR');
 //    const dbRefList = dbRefObject.child('habilidades');
     
     // Sincronizar objectos con la web
@@ -42,7 +42,7 @@
         
     ///////////////////////////////////////////////////////////////////////////////////////
     
-    const dbRefList2 = dbRefObject.child('fe06b1b1-4add-41fe-b1c7-2bcc907e42d3').child('Experiencias').child('201706082356').child('Datos Graficas').child('FC');
+    const dbRefList2 = dbRefObject.child('fe06b1b1-4add-41fe-b1c7-2bcc907e42d3').child('Experiencias').child('201706091412').child('Datos Graficas').child('FC');
     
     dbRefList2.on('value', snap => {
         var data = snap.val();  
@@ -62,7 +62,7 @@
     
     ///////////////////////////////////////////////////////////////////////////////////////
     
-    const dbRefList3 = dbRefObject.child('fe06b1b1-4add-41fe-b1c7-2bcc907e42d3').child('Experiencias').child('201706082356').child('Datos Graficas').child('Temperatura');
+    const dbRefList3 = dbRefObject.child('fe06b1b1-4add-41fe-b1c7-2bcc907e42d3').child('Experiencias').child('201706091412').child('Datos Graficas').child('Temperatura');
     
     dbRefList3.on('value', snap => {
         var data = snap.val();  
