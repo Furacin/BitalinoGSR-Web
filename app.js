@@ -36,24 +36,20 @@
         ulList.appendChild(li);
         
         var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-                datasets: [{
-                  label: 'gsr',
-                  data: data,
-                  backgroundColor: "rgba(153,255,51,0.4)"
-                }]
-              }
-            });
+//        ctx.height = 300;
+//        ctx.width = 300;
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+            datasets: [{
+              label: 'gsr',
+              data: data,
+              backgroundColor: "rgba(153,255,51,0.4)"
+            }]
+          }
+        });
     });
-    
-//    console.log(valores_fc);
-//    console.log(valores_fc[0]);
-    
-//    for (var i=0; i< valores_fc.length; i++) {
-//        alert(valores_fc[i]);
-//    }
+
     
 }());
