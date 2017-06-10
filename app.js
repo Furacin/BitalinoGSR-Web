@@ -89,10 +89,11 @@
         
         ///////////////////////////////////////////////////////////////////////////////////////
         
-//        var storageRef = firebase.storage().ref('investigador@gmail.com/Vídeos/201706080054.3gpp');
+        // Vídeo (si lo hay)
+        
         var storage = firebase.storage();
         var storageRef = storage.ref();
-        var tangRef = storageRef.child('investigador@gmail.com/Vídeos/201706080054');
+        var tangRef = storageRef.child(email + '/Vídeos/' + experiencia);
         
         tangRef.getDownloadURL().then(function(url) 
         {
