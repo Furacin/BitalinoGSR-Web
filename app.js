@@ -93,7 +93,7 @@
         
         var storage = firebase.storage();
         var storageRef = storage.ref();
-        var tangRef = storageRef.child(email + '/Vídeos/' + experiencia);
+        var tangRef = storageRef.child(email_login + '/Vídeos/' + experiencia);
         
         tangRef.getDownloadURL().then(function(url) 
         {
