@@ -2,7 +2,7 @@
     
     // Obtenemos el email del usuario logueado
     const email_login = sessionStorage.myvar;
-    console.log(email_login);
+//    console.log(email_login);
     
 // Initialize Firebase
     const config = {

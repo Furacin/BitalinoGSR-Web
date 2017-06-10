@@ -35,7 +35,7 @@
           var email = txtEmail.value;
           // Setting
           sessionStorage.myvar = email;
-          window.location.href = "hola.html";
+          window.location.href = "lista_experiencias.html";
           firebase.auth().signOut();
       }
     });

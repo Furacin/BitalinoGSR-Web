@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Datos Microsoft Band </title>
+        <style>
+        canvas{
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+    </head>
+    
+    <body>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+        
+<!--        <h1 id="holaMundo"></h1>-->
+        
+        <!-- Child -->
+        <ul id = "lista"></ul>
+    
+        <script>
+            // Initialize Firebase
+            const config = {
+                apiKey: "AIzaSyA-f9NMWCpap1SmlKs9nVWkTX9LJNAOSC0",
+                authDomain: "mbandgsr.firebaseapp.com",
+                databaseURL: "https://mbandgsr.firebaseio.com",
+                projectId: "mbandgsr",
+                storageBucket: "mbandgsr.appspot.com",
+                messagingSenderId: "457411073799"
+            };
+            firebase.initializeApp(config);
+            
+            ///////////////////////////////////////////////////////////////////////////////////
+            
+            const ulList = document.getElementById('lista');
+            
+            const dbRefObject = firebase.database().ref().child('users');
+            
+            // Obtenemos el email del usuario logueado
+            const email_login = sessionStorage.myvar;
+//            console.log(email_login);
+            
+            dbRefObject.on('child_added', snap => {
+                if (snap.val().email == email_login) {
+                    console.log(snap.key);
+                    const dbRefExperiencias = dbRefObject.child(snap.key).child('Experiencias');
+                    dbRefExperiencias.on('child_added', snap => {
+//                        console.log(snap.key);
+                        const li = document.createElement('li');
+                        li.innerText = snap.key;
+                        ulList.appendChild(li);
+                    });
+
+                }
+            });
+            
+        </script>
+    
+    </body>
+    
+    
+    
+    
+    
+</html>
