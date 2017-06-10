@@ -2,6 +2,7 @@
     
     // Obtenemos el email del usuario logueado
     const email_login = sessionStorage.myvar;
+    const experiencia = sessionStorage.experiencia_seleccionada;
 //    console.log(email_login);
     
 // Initialize Firebase
@@ -32,9 +33,9 @@
 //            user_key = snap.key;
 //            console.log(snap.key);
             
-            const dbRefList = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child('201706100429').child('Datos Graficas').child('GSR');
-            const dbRefList2 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child('201706100429').child('Datos Graficas').child('FC');
-            const dbRefList3 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child('201706100429').child('Datos Graficas').child('Temperatura');
+            const dbRefList = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child('Datos Graficas').child('GSR');
+            const dbRefList2 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child('Datos Graficas').child('FC');
+            const dbRefList3 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child('Datos Graficas').child('Temperatura');
             
             // Sincronizar objectos con la web
             dbRefList.on('value', snap => {

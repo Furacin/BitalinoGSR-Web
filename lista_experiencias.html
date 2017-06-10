@@ -169,8 +169,9 @@
             
             ulList.addEventListener('click', function(e) {
                 if (e.target.tagName === 'LI'){
-                  console.log(e.target.innerHTML);  // Check if the element is a LI
-                  
+                    console.log(e.target.innerHTML);  // Check if the element is a LI
+                    sessionStorage.experiencia_seleccionada = e.target.innerHTML;
+                    window.location.href = "data.html";
                 }
             });
             
