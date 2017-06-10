@@ -53,10 +53,6 @@
                 });
             });
 
-            ///////////////////////////////////////////////////////////////////////////////////////
-
-
-
             dbRefList2.on('value', snap => {
                 var data = snap.val();  
 
@@ -73,10 +69,6 @@
                 });
             });
 
-            ///////////////////////////////////////////////////////////////////////////////////////
-
-
-
             dbRefList3.on('value', snap => {
                 var data = snap.val();  
 
@@ -92,7 +84,38 @@
                   }
                 });
             });
-                }
+        }
+        
+        ///////////////////////////////////////////////////////////////////////////////////////
+        
+//        var storageRef = firebase.storage().ref('investigador@gmail.com/Vídeos/201706080054.3gpp');
+        var storage = firebase.storage();
+        var storageRef = storage.ref();
+        var tangRef = storageRef.child('investigador@gmail.com/Vídeos/201706080054');
+        
+        tangRef.getDownloadURL().then(function(url) 
+        {
+            var test = url
+            document.querySelector('video').src = test;
+            console.log(url);
+        }).catch(function(error) 
+        {
+            switch (error.code) 
+            {
+                case 'storage/object_not_found':
+                    break;
+
+                case 'storage/unauthorized':
+                    break;
+
+                case 'storage/canceled':
+                    break;
+
+                case 'storage/unknown':
+                    break;
+            }
         });
+        
+    });
     
 }());
