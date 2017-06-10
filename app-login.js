@@ -30,9 +30,13 @@
     
     //Handle Account Status
     firebase.auth().onAuthStateChanged(user => {
-      if(user) {
-        window.location = 'hola.html'; //After successful login, user will be redirected to home.html
-        firebase.auth().signOut();
+      if(user) { 
+//          window.location = 'hola.php'; //After successful login, user will be redirected to home.html
+          var email = txtEmail.value;
+          // Setting
+          sessionStorage.myvar = email;
+          window.location.href = "hola.html";
+          firebase.auth().signOut();
       }
     });
 
