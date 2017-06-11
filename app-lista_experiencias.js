@@ -28,11 +28,19 @@
                     const dbRefExperiencias = dbRefObject.child(snap.key).child('Experiencias');
                     dbRefExperiencias.on('child_added', snap => {
 //                        console.log(snap.key);
-                        const li = document.createElement('a');
-                        li.innerText = snap.key;
-                        li.href="data.html";
-                        li.className="list-group-item"; 
-                        ulList.appendChild(li);
+                        const a = document.createElement('a');
+                        var key = snap.key;
+                        var año = key.substring(0,4);
+                        var mes = key.substring(4,6);
+                        var dia = key.substring(6,8);
+                        var hora = key.substring(8,10);
+                        var minutos = key.substring(10,12);
+                        a.innerText = "Fecha: " + dia + "/" + mes + "/" + año + ", Hora de inicio: " + hora + ":" + minutos + "."; 
+                        a.href="data.html";
+                        a.style.fontStyle = "italic";
+                        a.style.fontSize = "large";
+                        a.className="list-group-item"; 
+                        ulList.appendChild(a);
                     });
 
                 }
@@ -41,7 +49,9 @@
             ulList.addEventListener('click', function(e) {
                 if (e.target.tagName.toLowerCase() === 'a'){
                     console.log(e.target.innerHTML);  // Check if the element is a LI
-                    sessionStorage.experiencia_seleccionada = e.target.innerHTML;
+                    var experiencia_id = e.target.innerHTML;
+                    
+                    sessionStorage.experiencia_seleccionada = experiencia_id.substring(13,17) + experiencia_id.substring(10,12) + experiencia_id.substring(7,9) + experiencia_id.substring(35,37) + experiencia_id.substring(38,40);
                     window.location.href = "data.html";
                 }
             });
