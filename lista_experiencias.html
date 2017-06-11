@@ -2,122 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title> Datos Microsoft Band </title>
         <style>
-        canvas{
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
+        
             
-        /* Remove margins and padding from the list */
-        ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Style the list items */
-        ul li {
-            cursor: pointer;
-            position: relative;
-            padding: 12px 8px 12px 40px;
-            background: #eee;
-            font-size: 18px;
-            transition: 0.2s;
-
-            /* make the list items unselectable */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        /* Set all odd list items to a different color (zebra-stripes) */
-        ul li:nth-child(odd) {
-            background: #f9f9f9;
-        }
-
-        /* Darker background-color on hover */
-        ul li:hover {
-            background: #ddd;
-        }
-
-        /* When clicked on, add a background color and strike out text */
-        ul li.checked {
-            background: #888;
-            color: #fff;
-            text-decoration: line-through;
-        }
-
-        /* Add a "checked" mark when clicked on */
-        ul li.checked::before {
-            content: '';
-            position: absolute;
-            border-color: #fff;
-            border-style: solid;
-            border-width: 0 2px 2px 0;
-            top: 10px;
-            left: 16px;
-            transform: rotate(45deg);
-            height: 15px;
-            width: 7px;
-        }
-
-        /* Style the close button */
-        .close {
-            position: absolute;
-            right: 0;
-            top: 0;
-            padding: 12px 16px 12px 16px;
-        }
-
-        .close:hover {
-            background-color: #f44336;
-            color: white;
-        }
-
-        /* Style the header */
-        .header {
-            background-color: #f44336;
-            padding: 30px 40px;
-            color: white;
-            text-align: center;
-        }
-
-        /* Clear floats after the header */
-        .header:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Style the input */
-        input {
-            border: none;
-            width: 75%;
-            padding: 10px;
-            float: left;
-            font-size: 16px;
-        }
-
-        /* Style the "Add" button */
-        .addBtn {
-            padding: 10px;
-            width: 25%;
-            background: #d9d9d9;
-            color: #555;
-            float: left;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .addBtn:hover {
-            background-color: #bbb;
-        }
             
     </style>
+        
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
     </head>
     
     <body>
@@ -125,57 +21,28 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
         
-<!--        <h1 id="holaMundo"></h1>-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Page 1</a></li>
+                  <li><a href="#">Page 2</a></li>
+                  <li><a href="#">Page 3</a></li>
+                </ul>
+              </div>
+        </nav>
         
-        <!-- Child -->
-        <ul id = "lista"></ul>
-    
-        <script>
-            // Initialize Firebase
-            const config = {
-                apiKey: "AIzaSyA-f9NMWCpap1SmlKs9nVWkTX9LJNAOSC0",
-                authDomain: "mbandgsr.firebaseapp.com",
-                databaseURL: "https://mbandgsr.firebaseio.com",
-                projectId: "mbandgsr",
-                storageBucket: "mbandgsr.appspot.com",
-                messagingSenderId: "457411073799"
-            };
-            firebase.initializeApp(config);
-            
-            ///////////////////////////////////////////////////////////////////////////////////
-            
-            const ulList = document.getElementById('lista');
-            
-            const dbRefObject = firebase.database().ref().child('users');
-            
-            // Obtenemos el email del usuario logueado
-            const email_login = sessionStorage.myvar;
-//            console.log(email_login);
-            
-            dbRefObject.on('child_added', snap => {
-                if (snap.val().email == email_login) {
-                    console.log(snap.key);
-                    const dbRefExperiencias = dbRefObject.child(snap.key).child('Experiencias');
-                    dbRefExperiencias.on('child_added', snap => {
-//                        console.log(snap.key);
-                        const li = document.createElement('li');
-                        li.innerText = snap.key;
-                        li.href 
-                        ulList.appendChild(li);
-                    });
-
-                }
-            });
-            
-            ulList.addEventListener('click', function(e) {
-                if (e.target.tagName === 'LI'){
-                    console.log(e.target.innerHTML);  // Check if the element is a LI
-                    sessionStorage.experiencia_seleccionada = e.target.innerHTML;
-                    window.location.href = "data.html";
-                }
-            });
-            
-        </script>        
+        
+<!--        <div style="text-align: center">-->
+            <div id = "lista" class="container">
+<!--                <ul id = "lista"> </ul>-->
+<!--            </div>-->
+        </div>
+        
+        <script src="app-lista_experiencias.js"></script>      
     
     </body>
     
