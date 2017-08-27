@@ -31,7 +31,7 @@
         if (snap.val().email == email_login) {
 //            console.log("hola");
 //            user_key = snap.key;
-//            console.log(snap.key);
+            console.log(snap.key);
             
             const dbRefList = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child('Datos Graficas').child('GSR');
             const dbRefList2 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child('Datos Graficas').child('FC');
