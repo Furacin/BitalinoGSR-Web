@@ -3,7 +3,9 @@
     // Obtenemos el email del usuario logueado
     const email_login = sessionStorage.myvar;
     const experiencia = sessionStorage.experiencia_seleccionada;
-//    console.log(email_login);
+    const usuario = sessionStorage.usuario_seleccionado;
+    console.log(experiencia);
+    console.log(usuario);
     
 // Initialize Firebase
     const config = {
@@ -33,9 +35,9 @@
 //            user_key = snap.key;
             console.log(snap.key);
             
-            const dbRefList = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child('Datos Graficas').child('GSR');
-            const dbRefList2 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child('Datos Graficas').child('FC');
-            const dbRefList3 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child('Datos Graficas').child('Temperatura');
+            const dbRefList = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('GSR');
+            const dbRefList2 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('FC');
+            const dbRefList3 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('Temperatura');
             
             // Sincronizar objectos con la web
             dbRefList.on('value', snap => {
@@ -93,13 +95,15 @@
         
         var storage = firebase.storage();
         var storageRef = storage.ref();
-        var tangRef = storageRef.child(email_login + '/Vídeos/' + experiencia);
         
+        var tangRef = storageRef.child(email_login + '/Vídeos/' + experiencia + '/' + usuario + '/' + 'video.3gp');
+        
+//        console.log(tangRef);
+//        
         tangRef.getDownloadURL().then(function(url) 
         {
             var test = url
             document.querySelector('video').src = test;
-            console.log(url);
         }).catch(function(error) 
         {
             switch (error.code) 

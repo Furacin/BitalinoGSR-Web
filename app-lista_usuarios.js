@@ -20,12 +20,12 @@
             
             // Obtenemos el email del usuario logueado
             const email_login = sessionStorage.myvar;
-//            console.log(email_login);
-            
+            const experiencia_seleccionada = sessionStorage.experiencia_seleccionada;
+        
             dbRefObject.on('child_added', snap => {
                 if (snap.val().email == email_login) {
                     console.log(snap.key);
-                    const dbRefExperiencias = dbRefObject.child(snap.key).child('Experiencias');
+                    const dbRefExperiencias = dbRefObject.child(snap.key).child('Experiencias').child(experiencia_seleccionada);
                     dbRefExperiencias.on('child_added', snap => {
 //                        console.log(snap.key);
                         const a = document.createElement('a');
@@ -38,7 +38,7 @@
 //                        var minutos = key.substring(10,12);
 //                        a.innerText = "Fecha: " + dia + "/" + mes + "/" + año + ", Hora de inicio: " + hora + ":" + minutos + "."; 
                         a.innerText = key;
-                        a.href="lista_usuarios.html";
+                        a.href="data.html";
                         a.style.fontStyle = "italic";
                         a.style.fontSize = "large";
                         a.className="list-group-item"; 
@@ -51,12 +51,11 @@
             ulList.addEventListener('click', function(e) {
                 if (e.target.tagName.toLowerCase() === 'a'){
                     console.log(e.target.innerHTML);  // Check if the element is a LI
-                    var experiencia_id = e.target.innerHTML;
-                    console.log(experiencia_id);
+                    var usuario_id = e.target.innerHTML;
+                    console.log(usuario_id);
 //                    sessionStorage.experiencia_seleccionada = experiencia_id.substring(13,17) + experiencia_id.substring(10,12) + experiencia_id.substring(7,9) + experiencia_id.substring(35,37) + experiencia_id.substring(38,40);
-                    sessionStorage.experiencia_seleccionada = experiencia_id;
-//                    window.location.href = "data.html";
-                    window.location.href = "lista_usuarios.html";
+                    sessionStorage.usuario_seleccionado = usuario_id;
+                    window.location.href = "data.html";
                 }
             });
 
