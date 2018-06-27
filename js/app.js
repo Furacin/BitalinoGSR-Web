@@ -44,16 +44,56 @@
                 var data = snap.val();  
 
                 var ctx = document.getElementById('myChart').getContext('2d');
+//                var myChart = new Chart(ctx, {
+//                  type: 'line',
+//                  data: {
+//                    datasets: [{
+//                      label: 'Resistencia Galvánica de la piel',
+//                      data: data,
+//                      backgroundColor: "rgba(153,255,51,0.4)"
+//                    }]
+//                  }
+//                });
+                
                 var myChart = new Chart(ctx, {
-                  type: 'line',
-                  data: {
+                type: 'line',
+                data: {
                     datasets: [{
                       label: 'Resistencia Galvánica de la piel',
                       data: data,
                       backgroundColor: "rgba(153,255,51,0.4)"
                     }]
-                  }
-                });
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    },
+                    // Container for pan options
+                    pan: {
+                        // Boolean to enable panning
+                        enabled: true,
+
+                        // Panning directions. Remove the appropriate direction to disable 
+                        // Eg. 'y' would only allow panning in the y direction
+                        mode: 'xy'
+                    },
+
+                    // Container for zoom options
+                    zoom: {
+                        // Boolean to enable zooming
+                        enabled: true,
+
+                        // Zooming directions. Remove the appropriate direction to disable 
+                        // Eg. 'y' would only allow zooming in the y direction
+                        mode: 'xy',
+                    }
+                }
+            });
+                
             });
 
             dbRefList2.on('value', snap => {
@@ -68,7 +108,35 @@
                       data: data,
                       backgroundColor: "rgba(153,255,51,0.4)"
                     }]
-                  }
+                  },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    },
+                    // Container for pan options
+                    pan: {
+                        // Boolean to enable panning
+                        enabled: true,
+
+                        // Panning directions. Remove the appropriate direction to disable 
+                        // Eg. 'y' would only allow panning in the y direction
+                        mode: 'xy'
+                    },
+
+                    // Container for zoom options
+                    zoom: {
+                        // Boolean to enable zooming
+                        enabled: true,
+
+                        // Zooming directions. Remove the appropriate direction to disable 
+                        // Eg. 'y' would only allow zooming in the y direction
+                        mode: 'xy',
+                    }
+                }
                 });
             });
 
@@ -84,7 +152,35 @@
                       data: data,
                       backgroundColor: "rgba(153,255,51,0.4)"
                     }]
-                  }
+                  },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        },
+                        // Container for pan options
+                        pan: {
+                            // Boolean to enable panning
+                            enabled: true,
+
+                            // Panning directions. Remove the appropriate direction to disable 
+                            // Eg. 'y' would only allow panning in the y direction
+                            mode: 'xy'
+                        },
+
+                        // Container for zoom options
+                        zoom: {
+                            // Boolean to enable zooming
+                            enabled: true,
+
+                            // Zooming directions. Remove the appropriate direction to disable 
+                            // Eg. 'y' would only allow zooming in the y direction
+                            mode: 'xy',
+                        }
+                    }
                 });
             });
         }

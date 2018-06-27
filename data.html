@@ -14,12 +14,14 @@
             -ms-user-select: none;
         }
     </style>
+        
     </head>
     
     <body>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/0.6.3/chartjs-plugin-zoom.js"></script>
         
         <h1 id="holaMundo"></h1>
         
@@ -43,6 +45,14 @@
         </nav>
         
         <div class="container">
+            
+            <div class="row">
+                <div class="col-xs-6">
+                        <button id="reset_zoom" onclick="resetZoom()">
+                           Reset zoom
+                        </button>
+                </div>
+            </div>
         
             <div class="row">
                 <div class="col-xs-6">
@@ -65,7 +75,6 @@
                         </div>
                     </div>
                 </div>
-                
                 
                 <div class="col-xs-6">
                         <video width="400" controls>
