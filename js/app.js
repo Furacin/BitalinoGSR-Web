@@ -1,3 +1,15 @@
+function resetZoomChar1() {
+    window.myChart.resetZoom()
+}
+
+function resetZoomChar2() {
+    window.myChart2.resetZoom()
+}
+
+function resetZoomChar3() {
+    window.myChart3.resetZoom()
+}
+
 (function() {
     
     // Obtenemos el email del usuario logueado
@@ -55,13 +67,14 @@
 //                  }
 //                });
                 
-                var myChart = new Chart(ctx, {
+                window.myChart = new Chart(document.getElementById('myChart'), {
                 type: 'line',
                 data: {
+                    labels: data,
                     datasets: [{
                       label: 'Resistencia Galvánica de la piel',
                       data: data,
-                      backgroundColor: "rgba(153,255,51,0.4)"
+                      backgroundColor: "rgba(0,0,255,0.6)"
                     }]
                 },
                 options: {
@@ -89,7 +102,7 @@
 
                         // Zooming directions. Remove the appropriate direction to disable 
                         // Eg. 'y' would only allow zooming in the y direction
-                        mode: 'xy',
+                        mode: 'x',
                     }
                 }
             });
@@ -100,13 +113,14 @@
                 var data = snap.val();  
 
                 var ctx = document.getElementById('myChart2').getContext('2d');
-                var myChart = new Chart(ctx, {
+                window.myChart2 = new Chart(ctx, {
                   type: 'line',
                   data: {
+                      labels: data,
                     datasets: [{
                       label: 'Frecuencia Cardíaca',
                       data: data,
-                      backgroundColor: "rgba(153,255,51,0.4)"
+                      backgroundColor: "rgba(255,0,0,0.6)"
                     }]
                   },
                 options: {
@@ -134,7 +148,7 @@
 
                         // Zooming directions. Remove the appropriate direction to disable 
                         // Eg. 'y' would only allow zooming in the y direction
-                        mode: 'xy',
+                        mode: 'x',
                     }
                 }
                 });
@@ -144,13 +158,14 @@
                 var data = snap.val();  
 
                 var ctx = document.getElementById('myChart3').getContext('2d');
-                var myChart = new Chart(ctx, {
+                window.myChart3 = new Chart(ctx, {
                   type: 'line',
                   data: {
+                      labels: data,
                     datasets: [{
                       label: 'Temperatura',
                       data: data,
-                      backgroundColor: "rgba(153,255,51,0.4)"
+                      backgroundColor: "rgba(255,0,255,0.6)"
                     }]
                   },
                     options: {
@@ -178,7 +193,7 @@
 
                             // Zooming directions. Remove the appropriate direction to disable 
                             // Eg. 'y' would only allow zooming in the y direction
-                            mode: 'xy',
+                            mode: 'x',
                         }
                     }
                 });

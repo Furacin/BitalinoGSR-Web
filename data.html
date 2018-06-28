@@ -47,12 +47,23 @@
         <div class="container">
             
             <div class="row">
-                <div class="col-xs-6">
-                        <button id="reset_zoom" onclick="resetZoom()">
-                           Reset zoom
+                <div class="col-xs-2">
+                        <button id="reset_zoom1" onclick="resetZoomChar1()">
+                           Reset zoom GSR
+                        </button>
+                </div>
+                <div class="col-xs-2">
+                        <button id="reset_zoom2" onclick="resetZoomChar2()">
+                           Reset zoom FC
+                        </button>
+                </div>
+                <div class="col-xs-2">
+                        <button id="reset_zoom3" onclick="resetZoomChar3()">
+                           Reset zoom Temp.
                         </button>
                 </div>
             </div>
+            </br></br>
         
             <div class="row">
                 <div class="col-xs-6">
@@ -76,7 +87,7 @@
                     </div>
                 </div>
                 
-                <div class="col-xs-6">
+                <div class="col-xs-5">
                         <video width="400" controls>
                           <source src="" type="video/mp4">
                           <source src="" type="video/3gpp">
