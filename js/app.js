@@ -10,6 +10,14 @@ function resetZoomChar3() {
     window.myChart3.resetZoom()
 }
 
+function NumeroElementos(length) {
+    var elementos = []
+    for (var i = 1; i<length+1; i++) {
+        elementos.push(i);
+    }
+    return elementos;
+}
+
 (function() {
     
     // Obtenemos el email del usuario logueado
@@ -56,21 +64,12 @@ function resetZoomChar3() {
                 var data = snap.val();  
 
                 var ctx = document.getElementById('myChart').getContext('2d');
-//                var myChart = new Chart(ctx, {
-//                  type: 'line',
-//                  data: {
-//                    datasets: [{
-//                      label: 'Resistencia Galvánica de la piel',
-//                      data: data,
-//                      backgroundColor: "rgba(153,255,51,0.4)"
-//                    }]
-//                  }
-//                });
+                var labelElementos = NumeroElementos(data.length);
                 
                 window.myChart = new Chart(document.getElementById('myChart'), {
                 type: 'line',
                 data: {
-                    labels: data,
+                    labels: labelElementos,
                     datasets: [{
                       label: 'Resistencia Galvánica de la piel',
                       data: data,
@@ -113,10 +112,11 @@ function resetZoomChar3() {
                 var data = snap.val();  
 
                 var ctx = document.getElementById('myChart2').getContext('2d');
+                var labelElementos = NumeroElementos(data.length);
                 window.myChart2 = new Chart(ctx, {
                   type: 'line',
                   data: {
-                      labels: data,
+                      labels: labelElementos,
                     datasets: [{
                       label: 'Frecuencia Cardíaca',
                       data: data,
@@ -158,10 +158,11 @@ function resetZoomChar3() {
                 var data = snap.val();  
 
                 var ctx = document.getElementById('myChart3').getContext('2d');
+                var labelElementos = NumeroElementos(data.length);
                 window.myChart3 = new Chart(ctx, {
                   type: 'line',
                   data: {
-                      labels: data,
+                      labels: labelElementos,
                     datasets: [{
                       label: 'Temperatura',
                       data: data,
