@@ -19,6 +19,7 @@ function NumeroElementos(length) {
     return elementos;
 }
 
+// Control de las gráficas 
 (function() {
     
 //    Chart.plugins.register({
@@ -269,3 +270,27 @@ function NumeroElementos(length) {
     });
     
 }());
+
+
+function lineaVerticalGSR() {
+    var imageOffset = 430;
+            document.getElementById("verticalLine").style.left = imageOffset.toString() + "px";
+            
+            // Obtenemos el valor del slider
+            var slider = document.getElementById("slider");
+       
+            // Obtener la posición del slider
+//            var position = slider.getBoundingClientRect();
+//            var x = position.left;
+//            var y = position.right;
+//            console.log(x);
+//            console.log(y);
+            
+            slider.addEventListener('input', function(){             
+                    if (slider.value==1) 
+                        imageOffset = 430
+                    else
+                        imageOffset = 430 + 4.65*parseInt(slider.value)
+                document.getElementById("verticalLine").style.left = imageOffset + "px";
+            },false);
+}

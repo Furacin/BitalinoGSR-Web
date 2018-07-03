@@ -116,7 +116,7 @@
         </nav>
         
         <div class="container">
-            <div id="verticalLine" class="vl" style="position:absolute;"></div>
+            <div id="verticalLine" class="vl" style="position:absolute; top:230px;"></div>
             </br>
             <div class="row">
                 <div class="col-xs-2">
@@ -174,27 +174,8 @@
         </div>
 
         <script>
-            var imageOffset = 430;
-            document.getElementById("verticalLine").style.left = imageOffset.toString() + "px";
-            
-            // Obtenemos el valor del slider
-            var slider = document.getElementById("slider");
-       
-            // Obtener la posición del slider
-//            var position = slider.getBoundingClientRect();
-//            var x = position.left;
-//            var y = position.right;
-//            console.log(x);
-//            console.log(y);
-            
-            slider.addEventListener('input', function(){             
-                    if (slider.value==1) 
-                        imageOffset = 430
-                    else
-                        imageOffset = 430 + 4.7*parseInt(slider.value)
-                document.getElementById("verticalLine").style.left = imageOffset + "px";
-            },false);
-            
+            lineaVerticalGSR();
+         
         </script>
     
     </body>
