@@ -1,3 +1,4 @@
+
 function resetZoomChar1() {
     window.myChart.resetZoom()
 }
@@ -19,6 +20,29 @@ function NumeroElementos(length) {
 }
 
 (function() {
+    
+//    Chart.plugins.register({
+//       afterDatasetsDraw: function(chart) {
+//          if (chart.tooltip._active && chart.tooltip._active.length) {
+//             var activePoint = chart.tooltip._active[0],
+//                ctx = chart.ctx,
+//                y_axis = chart.scales['y-axis-0'],
+//                x = activePoint.tooltipPosition().x,
+//                topY = y_axis.top,
+//                bottomY = y_axis.bottom;
+//             // draw line
+//             ctx.save();
+//             ctx.beginPath();
+//             ctx.moveTo(x, topY);
+//             ctx.lineTo(x, bottomY);
+//             ctx.lineWidth = 2;
+//             ctx.strokeStyle = '#07C';
+//             ctx.stroke();
+//             ctx.restore();
+//          }
+//       }
+//    });
+    
     
     // Obtenemos el email del usuario logueado
     const email_login = sessionStorage.myvar;
@@ -44,6 +68,7 @@ function NumeroElementos(length) {
     
     // Crear referencias
     const dbRefObject = firebase.database().ref().child('users');
+    var chart1;
     
     
     dbRefObject.on('child_added', snap => {
@@ -66,7 +91,7 @@ function NumeroElementos(length) {
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var labelElementos = NumeroElementos(data.length);
                 
-                window.myChart = new Chart(document.getElementById('myChart'), {
+                window.myChar1 = new Chart(document.getElementById('myChart'), {
                 type: 'line',
                 data: {
                     labels: labelElementos,
@@ -107,6 +132,13 @@ function NumeroElementos(length) {
             });
                 
             });
+            
+            //window.myChar1 = chart1;
+//            var meta = chart1.getDatasetMeta(0);
+//            var x = meta.data[1]._model.x
+//            var y = meta.data[1]._model.y
+//            console.log(x);
+//            console.log(y);
 
             dbRefList2.on('value', snap => {
                 var data = snap.val();  
