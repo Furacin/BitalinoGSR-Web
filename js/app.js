@@ -282,12 +282,12 @@ function lineaVerticalGSR() {
             setTimeout(function() {
                 duracionVideo = video.duration
                 console.log(duracionVideo)
-            }, 2000);
+            }, 5000);
                 
-            document.getElementById("verticalLine").style.left = imageOffset.toString() + "px";
+            document.getElementById("verticalLineGSR").style.left = imageOffset.toString() + "px";
             
             // Obtenemos el valor del slider
-            var slider = document.getElementById("slider");
+            var slider = document.getElementById("sliderGSR");
        
             // Obtener la posición del slider
 //            var position = slider.getBoundingClientRect();
@@ -302,7 +302,73 @@ function lineaVerticalGSR() {
                     imageOffset = 430
                 else
                     imageOffset = 430 + 4.65*parseInt(slider.value)
-                document.getElementById("verticalLine").style.left = imageOffset + "px";
+                document.getElementById("verticalLineGSR").style.left = imageOffset + "px";
+                
+                // Movemos el vídeo
+                // Dividimos la duración del vídeo entre los 100 steps del slider
+                var videoStep = duracionVideo/100
+                // Cambiamos el tiempo del vídeo según se mueve el slider
+                video.currentTime = videoStep*slider.value
+                
+            },false);
+}
+
+function lineaVerticalFC() {
+    var imageOffset = 410;
+    
+            // Duración del vídeo
+            var duracionVideo;    
+            var video = document.getElementById("video");
+            
+            setTimeout(function() {
+                duracionVideo = video.duration
+            }, 5000);
+                
+            document.getElementById("verticalLineFC").style.left = imageOffset.toString() + "px";
+            
+            // Obtenemos el valor del slider
+            var slider = document.getElementById("sliderFC");
+            
+            slider.addEventListener('input', function(){       
+                // Vamos desplazando la línea vertical
+                if (slider.value==1) 
+                    imageOffset = 410
+                else
+                    imageOffset = 410 + 4.85*parseInt(slider.value)
+                document.getElementById("verticalLineFC").style.left = imageOffset + "px";
+                
+                // Movemos el vídeo
+                // Dividimos la duración del vídeo entre los 100 steps del slider
+                var videoStep = duracionVideo/100
+                // Cambiamos el tiempo del vídeo según se mueve el slider
+                video.currentTime = videoStep*slider.value
+                
+            },false);
+}
+
+function lineaVerticalTemp() {
+    var imageOffset = 405;
+    
+            // Duración del vídeo
+            var duracionVideo;    
+            var video = document.getElementById("video");
+            
+            setTimeout(function() {
+                duracionVideo = video.duration
+            }, 5000);
+                
+            document.getElementById("verticalLineTemp").style.left = imageOffset.toString() + "px";
+            
+            // Obtenemos el valor del slider
+            var slider = document.getElementById("sliderTemp");
+            
+            slider.addEventListener('input', function(){       
+                // Vamos desplazando la línea vertical
+                if (slider.value==1) 
+                    imageOffset = 405
+                else
+                    imageOffset = 405 + 4.9*parseInt(slider.value)
+                document.getElementById("verticalLineTemp").style.left = imageOffset + "px";
                 
                 // Movemos el vídeo
                 // Dividimos la duración del vídeo entre los 100 steps del slider
