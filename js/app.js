@@ -92,7 +92,7 @@ function NumeroElementos(length) {
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var labelElementos = NumeroElementos(data.length);
                 
-                window.myChar1 = new Chart(document.getElementById('myChart'), {
+                window.myChart = new Chart(document.getElementById('myChart'), {
                 type: 'line',
                 data: {
                     labels: labelElementos,
@@ -238,34 +238,32 @@ function NumeroElementos(length) {
         
         // Vídeo (si lo hay)
         
-        var storage = firebase.storage();
-        var storageRef = storage.ref();
-        
-        var tangRef = storageRef.child(email_login + '/Vídeos/' + experiencia + '/' + usuario + '/' + 'video.3gp');
-        
-//        console.log(tangRef);
+//        var storage = firebase.storage();
+//        var storageRef = storage.ref();
 //        
-        tangRef.getDownloadURL().then(function(url) 
-        {
-            var test = url
-            document.querySelector('video').src = test;
-        }).catch(function(error) 
-        {
-            switch (error.code) 
-            {
-                case 'storage/object_not_found':
-                    break;
-
-                case 'storage/unauthorized':
-                    break;
-
-                case 'storage/canceled':
-                    break;
-
-                case 'storage/unknown':
-                    break;
-            }
-        });
+//        var tangRef = storageRef.child(email_login + '/Vídeos/' + experiencia + '/' + usuario + '/' + 'video.3gp');
+//                
+//        tangRef.getDownloadURL().then(function(url) 
+//        {
+//            var test = url
+//            document.querySelector('video').src = test;
+//        }).catch(function(error) 
+//        {
+//            switch (error.code) 
+//            {
+//                case 'storage/object_not_found':
+//                    break;
+//
+//                case 'storage/unauthorized':
+//                    break;
+//
+//                case 'storage/canceled':
+//                    break;
+//
+//                case 'storage/unknown':
+//                    break;
+//            }
+//        });
         
     });
     
@@ -281,7 +279,6 @@ function lineaVerticalGSR() {
             
             setTimeout(function() {
                 duracionVideo = video.duration
-                console.log(duracionVideo)
             }, 5000);
                 
             document.getElementById("verticalLineGSR").style.left = imageOffset.toString() + "px";
@@ -296,7 +293,7 @@ function lineaVerticalGSR() {
 //            console.log(x);
 //            console.log(y);
             
-            slider.addEventListener('input', function(){       
+            slider.addEventListener('change', function(){       
                 // Vamos desplazando la línea vertical
                 if (slider.value==1) 
                     imageOffset = 430
@@ -329,7 +326,7 @@ function lineaVerticalFC() {
             // Obtenemos el valor del slider
             var slider = document.getElementById("sliderFC");
             
-            slider.addEventListener('input', function(){       
+            slider.addEventListener('oninput', function(){       
                 // Vamos desplazando la línea vertical
                 if (slider.value==1) 
                     imageOffset = 410
@@ -362,7 +359,7 @@ function lineaVerticalTemp() {
             // Obtenemos el valor del slider
             var slider = document.getElementById("sliderTemp");
             
-            slider.addEventListener('input', function(){       
+            slider.addEventListener('oninput', function(){       
                 // Vamos desplazando la línea vertical
                 if (slider.value==1) 
                     imageOffset = 405
@@ -378,3 +375,70 @@ function lineaVerticalTemp() {
                 
             },false);
 }
+
+function moverLineasPlay() {    
+    var imageOffsetGSR = 430;
+    var imageOffsetFC = 410;
+    var imageOffsetTemp = 405;
+    var sliderGSR = document.getElementById("sliderGSR");
+    var sliderFC = document.getElementById("sliderFC");
+    var sliderTemp = document.getElementById("sliderTemp");
+    
+    setTimeout(function() {
+        var video = document.getElementById("video");
+        var duracion = video.duration
+        sessionStorage.tiempo_anterior = 0;
+        // Recargamos la página por si acaso no se han obtenido bien los datos del vídeo
+        if (isNaN(duracion)) {
+            location.reload();
+        }
+        console.log(duracion)
+        var tiempoStep = duracion/100;
+        var i = 1
+        video.ontimeupdate = function() {
+            if (video.currentTime >= tiempoStep*i) {      
+                imageOffsetGSR = 430 + 4.65*parseInt(sliderGSR.value)
+                document.getElementById("verticalLineGSR").style.left = imageOffsetGSR + "px";
+                imageOffsetFC = 410 + 4.85*parseInt(sliderFC.value)
+                document.getElementById("verticalLineFC").style.left = imageOffsetFC + "px";
+                imageOffsetTemp = 405 + 4.9*parseInt(sliderTemp.value)
+                document.getElementById("verticalLineTemp").style.left = imageOffsetTemp + "px";
+                
+//                sliderGSR.value++;
+//                sliderFC.value++;
+//                sliderTemp.value++;
+                sliderGSR.value = (video.currentTime * 100)/duracion
+                sliderFC.value = (video.currentTime * 100)/duracion
+                sliderTemp.value = (video.currentTime * 100)/duracion
+                i++;
+            }
+            else {
+                if (video.currentTime < sessionStorage.tiempo_anterior) {
+                    
+                    sliderGSR.value = (video.currentTime * 100)/duracion
+                    sliderFC.value = (video.currentTime * 100)/duracion
+                    sliderTemp.value = (video.currentTime * 100)/duracion
+                    
+                    imageOffsetGSR = 430 + 4.65*parseInt(sliderGSR.value)
+                    document.getElementById("verticalLineGSR").style.right = imageOffsetGSR + "px";
+                    imageOffsetFC = 410 + 4.85*parseInt(sliderFC.value)
+                    document.getElementById("verticalLineFC").style.right = imageOffsetFC + "px";
+                    imageOffsetTemp = 405 + 4.9*parseInt(sliderTemp.value)
+                    document.getElementById("verticalLineTemp").style.right = imageOffsetTemp + "px";
+                    
+                    i = parseInt(((video.currentTime) * 100)/duracion) 
+                    if (video.currentTime == 0) {
+                        imageOffsetGSR = 430 
+                        document.getElementById("verticalLineGSR").style.left = imageOffsetGSR + "px";
+                        imageOffsetFC = 410 
+                        document.getElementById("verticalLineFC").style.left = imageOffsetFC + "px";
+                        imageOffsetTemp = 405 
+                        document.getElementById("verticalLineTemp").style.left = imageOffsetTemp + "px";
+                    }
+                }
+            }
+            sessionStorage.tiempo_anterior = video.currentTime;
+        };
+    }, 5000);
+}
+

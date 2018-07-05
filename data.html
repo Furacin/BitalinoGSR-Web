@@ -186,7 +186,7 @@
                     <div class="panel-body" style="padding:28px;">
                         
                         <video width="400" controls id="video">
-                          <source src="" type="video/mp4">
+                          <source src="video.mp4" type="video/mp4">
                           <source src="" type="video/3gpp">
                           Your browser does not support HTML5 video.
                         </video>
@@ -197,16 +197,18 @@
         </div>
 
         <script>
-            
+            lineaVerticalGSR();
+                lineaVerticalFC();
+                lineaVerticalTemp();
+                moverLineasPlay();
             //paste this code under the head tag or in a separate js file.
             // Wait for window load
             $(window).load(function() {
-                lineaVerticalGSR();
-                lineaVerticalFC();
-                lineaVerticalTemp();
+                
                 // Animate loader off screen
                 $(".se-pre-con").delay(5000).fadeOut("slow");
             });
+            
             
            
         </script>
