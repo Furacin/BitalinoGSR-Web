@@ -27,22 +27,24 @@
                     console.log(snap.key);
                     const dbRefExperiencias = dbRefObject.child(snap.key).child('Experiencias').child(experiencia_seleccionada);
                     dbRefExperiencias.on('child_added', snap => {
-//                        console.log(snap.key);
-                        const a = document.createElement('a');
-                        var key = snap.key;
-                    
-//                        var año = key.substring(0,4);
-//                        var mes = key.substring(4,6);
-//                        var dia = key.substring(6,8);
-//                        var hora = key.substring(8,10);
-//                        var minutos = key.substring(10,12);
-//                        a.innerText = "Fecha: " + dia + "/" + mes + "/" + año + ", Hora de inicio: " + hora + ":" + minutos + "."; 
-                        a.innerText = key;
-                        a.href="data.html";
-                        a.style.fontStyle = "italic";
-                        a.style.fontSize = "large";
-                        a.className="list-group-item"; 
-                        ulList.appendChild(a);
+                        if (snap.key != "fechaRealizacion" && snap.key != "pruebaTerminada") {
+    //                        console.log(snap.key);
+                            const a = document.createElement('a');
+                            var key = snap.key;
+
+    //                        var año = key.substring(0,4);
+    //                        var mes = key.substring(4,6);
+    //                        var dia = key.substring(6,8);
+    //                        var hora = key.substring(8,10);
+    //                        var minutos = key.substring(10,12);
+    //                        a.innerText = "Fecha: " + dia + "/" + mes + "/" + año + ", Hora de inicio: " + hora + ":" + minutos + "."; 
+                            a.innerText = key;
+                            a.href="data.html";
+                            a.style.fontStyle = "italic";
+                            a.style.fontSize = "large";
+                            a.className="list-group-item"; 
+                            ulList.appendChild(a);
+                        }
                     });
 
                 }
