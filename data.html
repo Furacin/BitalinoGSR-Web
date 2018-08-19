@@ -136,7 +136,7 @@
         <div class="container">
             <div id="verticalLineGSR" class="vl" style="position:absolute; top:230px;"></div>
             <div id="verticalLineFC" class="vl" style="position:absolute; top:518px;"></div>
-            <div id="verticalLineTemp" class="vl" style="position:absolute; top:805px;"></div>
+            <div id="verticalLineTemp" class="vl" style="position:absolute; top:805px; display:none;"></div>
             </br>
             <div class="row">
                 <div class="col-xs-2">
@@ -149,11 +149,13 @@
                            <i class="fa fa-refresh"></i>   Reset zoom FC
                         </button>
                 </div>
+<!--
                 <div class="col-xs-2">
                         <button type="button" id="reset_zoom3" class="btnTemp" onclick="resetZoomChar3()">
                            <i class="fa fa-refresh"></i>   Reset zoom Temp.
                         </button>
                 </div>
+-->
             </div>
             </br></br>
         
@@ -174,7 +176,7 @@
                         </div>
                     </div>
 
-                    <div class="row" style="width:200%;">
+                    <div class="row" style="width:200%; display:none;">
                         <div class="col-xs-6">
                             <canvas id="myChart3"></canvas>
                             <input type="range" name="weight" id="sliderTemp" class="slider" value="0" min="1" max="100"> 
@@ -186,13 +188,18 @@
                     <div class="panel-body" style="padding:28px;">
                         
                         <video width="400" controls id="video">
-                          <source src="video.mp4" type="video/mp4">
+                          <source src="" type="video/mp4">
                           <source src="" type="video/3gpp">
                           Your browser does not support HTML5 video.
                         </video>
                     </div>
-                    <div style="margin:auto; text-align:center;">
-                        <button type="button" id="reset_zoom1" class="btnGSR" onclick="exportarExcel()">
+                    <div id="audioDiv" style="margin:auto; text-align:center; display:none; font-weight: bold;">
+                        <button type="button" id="btnAudio" class="btnGSR" onclick="descargarAudio()" style="background-color:#E8C467; font-weight: bold;">
+                             <i class="fa fa-file-audio-o" aria-hidden="true"></i> Descargar Audio
+                        </button>
+                    </div>
+                    <div style="margin:auto; text-align:center; margin-top:25px;">
+                        <button type="button" id="btnExcel" class="btnGSR" onclick="exportarExcel()" style="background-color:#99FF9E; font-weight: bold;">
                              <i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel
                         </button>
                     </div>

@@ -1,6 +1,7 @@
 var dataGSR;
 var dataFC;
 var dataTemp;
+var audioURI;
 
 function resetZoomChar1() {
     window.myChart.resetZoom()
@@ -74,15 +75,19 @@ function NumeroElementos(length) {
     const dbRefObject = firebase.database().ref().child('users');
     var chart1;
     
+    var tipoPrueba;
     
     dbRefObject.on('child_added', snap => {
-//        var firebase_key = snap.val();
-//        var key_email = key.email;
 //        console.log(snap.val().email);
         if (snap.val().email == email_login) {
-//            console.log("hola");
 //            user_key = snap.key;
             console.log(snap.key);
+            
+            // Obtenemos el tipo de Prueba
+            const tipoPruebaRef = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child("opcion_multimedia");
+            tipoPruebaRef.on('value', snap => {
+                tipoPrueba = snap.val(); 
+            });
             
             const dbRefList = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('GSR');
             const dbRefList2 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('FC');
@@ -242,32 +247,64 @@ function NumeroElementos(length) {
         
         // Vídeo (si lo hay)
         
-//        var storage = firebase.storage();
-//        var storageRef = storage.ref();
-//        
-//        var tangRef = storageRef.child(email_login + '/Vídeos/' + experiencia + '/' + usuario + '/' + 'video.3gp');
-//                
-//        tangRef.getDownloadURL().then(function(url) 
-//        {
-//            var test = url
-//            document.querySelector('video').src = test;
-//        }).catch(function(error) 
-//        {
-//            switch (error.code) 
-//            {
-//                case 'storage/object_not_found':
-//                    break;
-//
-//                case 'storage/unauthorized':
-//                    break;
-//
-//                case 'storage/canceled':
-//                    break;
-//
-//                case 'storage/unknown':
-//                    break;
-//            }
-//        });
+        var storage = firebase.storage();
+        var storageRef = storage.ref();
+        var tangRef;
+        
+        switch(tipoPrueba) {
+            case "Sólo Vídeo":
+                tangRef= storageRef.child(email_login + '/Vídeos/' + experiencia + '/' + usuario + '/' + 'video.3gp');  
+//                alert(tangRef);
+                tangRef.getDownloadURL().then(function(url) 
+                {
+                    var test = url
+                    document.querySelector('video').src = test;
+                }).catch(function(error) 
+                {
+                    switch (error.code) 
+                    {
+                        case 'storage/object_not_found':
+                            break;
+
+                        case 'storage/unauthorized':
+                            break;
+
+                        case 'storage/canceled':
+                            break;
+
+                        case 'storage/unknown':
+                            break;
+                    }
+                });
+                break;
+            case "Sólo Audio":
+                tangRef= storageRef.child(email_login + '/Audios/' + experiencia + '/' + usuario + '/' + 'audio.mp3');  
+                document.getElementById("video").style.display = 'none';
+                document.getElementById("audioDiv").style.display = 'table';
+                tangRef.getDownloadURL().then(function(url) 
+                {
+                   var test = url;
+                   audioURI = test;
+
+                }).catch(function(error) 
+                {
+                    switch (error.code) 
+                    {
+                        case 'storage/object_not_found':
+                            break;
+
+                        case 'storage/unauthorized':
+                            break;
+
+                        case 'storage/canceled':
+                            break;
+
+                        case 'storage/unknown':
+                            break;
+                    }
+                });
+                break;
+        }
         
     });
     
@@ -393,9 +430,9 @@ function moverLineasPlay() {
         var duracion = video.duration
         sessionStorage.tiempo_anterior = 0;
         // Recargamos la página por si acaso no se han obtenido bien los datos del vídeo
-        if (isNaN(duracion)) {
-            location.reload();
-        }
+//        if (isNaN(duracion)) {
+//            location.reload();
+//        }
         console.log(duracion)
         var tiempoStep = duracion/100;
         var i = 1
@@ -447,43 +484,6 @@ function moverLineasPlay() {
 }
 
 function exportarExcel() {
-    
-    // dataGSR, dataFC, dataTemp
-    
-    
-    
-//    const dataSample = [{
-//        "Muestra": "",
-//        "GSR": "Aug 2004",
-//        "FC": 78.17,
-//        "Temperatura": ""
-//    }];
-    
-//    var Results = [
-//        ["GSR", "FC", "Temperatura"],
-//        ["Data", 50, 100, 500],
-//    ];
-//    
-//    var Results = [
-//      ["Col1", "Col2", "Col3", "Col4"],
-//      ["Data", 50, 100, 500],
-//      ["Data", -100, 20, 100],
-//    ];
-//    
-//      var CsvString = "";
-//      Results.forEach(function(RowItem, RowIndex) {
-//        RowItem.forEach(function(ColItem, ColIndex) {
-//          CsvString += ColItem + ',';
-//        });
-//        CsvString += "\r\n";
-//      });
-//      CsvString = "data:application/csv," + encodeURIComponent(CsvString);
-//      var x = document.createElement("A");
-//      x.setAttribute("href", CsvString );
-//      x.setAttribute("download","somedata.csv");
-//      document.body.appendChild(x);
-//      x.click();
-
     const rows = [["Muestra", "GSR(Ohmios)", "FC(pulsaciones)"],];
     
     var i = 0;
@@ -515,5 +515,18 @@ function exportarExcel() {
     document.body.appendChild(link); // Required for FF
 
     link.click(); // This will download the data file named "my_data.csv".
+}
+
+function descargarAudio() {
+    
+    var link = document.createElement("a");
+                
+    link.setAttribute("href", audioURI);
+    link.setAttribute("download", "audio.mp3");
+    link.innerHTML= "";
+    document.body.appendChild(link); // Required for FF
+
+    link.click(); // This will download the data file named "my_data.csv".
+
 }
 
