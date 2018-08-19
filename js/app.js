@@ -510,8 +510,8 @@ function exportarExcel() {
     var encodedUri = encodeURI(csvContent);
     var link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "my_data.csv");
-    link.innerHTML= "Click Here to download";
+    link.setAttribute("download", "valores_graficas.csv");
+    link.innerHTML= "";
     document.body.appendChild(link); // Required for FF
 
     link.click(); // This will download the data file named "my_data.csv".
