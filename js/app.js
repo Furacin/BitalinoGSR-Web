@@ -1,3 +1,6 @@
+var dataGSR;
+var dataFC;
+var dataTemp;
 
 function resetZoomChar1() {
     window.myChart.resetZoom()
@@ -84,11 +87,12 @@ function NumeroElementos(length) {
             const dbRefList = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('GSR');
             const dbRefList2 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('FC');
             const dbRefList3 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('Temperatura');
+        
             
             // Sincronizar objectos con la web
             dbRefList.on('value', snap => {
                 var data = snap.val();  
-
+                dataGSR = data;      
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var labelElementos = NumeroElementos(data.length);
                 
@@ -143,7 +147,7 @@ function NumeroElementos(length) {
 
             dbRefList2.on('value', snap => {
                 var data = snap.val();  
-
+                dataFC = data;
                 var ctx = document.getElementById('myChart2').getContext('2d');
                 var labelElementos = NumeroElementos(data.length);
                 window.myChart2 = new Chart(ctx, {
@@ -189,7 +193,7 @@ function NumeroElementos(length) {
 
             dbRefList3.on('value', snap => {
                 var data = snap.val();  
-
+                dataTemp = data;
                 var ctx = document.getElementById('myChart3').getContext('2d');
                 var labelElementos = NumeroElementos(data.length);
                 window.myChart3 = new Chart(ctx, {
@@ -440,5 +444,76 @@ function moverLineasPlay() {
             sessionStorage.tiempo_anterior = video.currentTime;
         };
     }, 5000);
+}
+
+function exportarExcel() {
+    
+    // dataGSR, dataFC, dataTemp
+    
+    
+    
+//    const dataSample = [{
+//        "Muestra": "",
+//        "GSR": "Aug 2004",
+//        "FC": 78.17,
+//        "Temperatura": ""
+//    }];
+    
+//    var Results = [
+//        ["GSR", "FC", "Temperatura"],
+//        ["Data", 50, 100, 500],
+//    ];
+//    
+//    var Results = [
+//      ["Col1", "Col2", "Col3", "Col4"],
+//      ["Data", 50, 100, 500],
+//      ["Data", -100, 20, 100],
+//    ];
+//    
+//      var CsvString = "";
+//      Results.forEach(function(RowItem, RowIndex) {
+//        RowItem.forEach(function(ColItem, ColIndex) {
+//          CsvString += ColItem + ',';
+//        });
+//        CsvString += "\r\n";
+//      });
+//      CsvString = "data:application/csv," + encodeURIComponent(CsvString);
+//      var x = document.createElement("A");
+//      x.setAttribute("href", CsvString );
+//      x.setAttribute("download","somedata.csv");
+//      document.body.appendChild(x);
+//      x.click();
+
+    const rows = [["Muestra", "GSR(Ohmios)", "FC(pulsaciones)"],];
+    
+    var i = 0;
+    dataGSR.forEach(function(element) {
+        var value = [];
+        value.push(i);
+        value.push(dataGSR[i]);
+        rows.push(value);
+        i++;
+    });
+    
+    i = 0;
+    dataFC.forEach(function(element) {
+        rows[i+1].push(dataFC[i]);
+        i++;
+    });
+    
+    let csvContent = "data:text/csv;charset=utf-8,";
+    rows.forEach(function(rowArray){
+       let row = rowArray.join(",");
+       csvContent += row + "\r\n";
+    }); 
+    
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "my_data.csv");
+    link.innerHTML= "Click Here to download";
+    document.body.appendChild(link); // Required for FF
+
+    link.click(); // This will download the data file named "my_data.csv".
 }
 
