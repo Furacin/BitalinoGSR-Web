@@ -6,6 +6,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="css/style2.css">
+        
         <title> Datos BitaGSR </title>
         <style>  
             hr {
@@ -16,6 +20,10 @@
                 margin: 1em 0;
                 padding: 0; 
                 margin-bottom: 50px;
+            }
+            
+            a {
+            color: #000000;
             }
         </style>
         
@@ -38,20 +46,26 @@
               </div>
         </nav>
         
+
         
-<!--        <div style="text-align: center">-->
         <div class="container">
-<!--                <ul id = "lista"> </ul>-->
-<!--            </div>-->
-            <center><h1 style="color:#50514F; font-size: 50px;" >Listado de experiencias</h1></center>
-            
-            <hr >
-                <table >
-                    <tbody id = "lista">
-                    </tbody>
-                </table>
+            <div class="row">
+                <section class="content">
+                    <h1>Listado de experiencias</h1>
+                    <hr>
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel">
+                                <table class="table table-filter">
+                                    <tbody id = "lista">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-        
         <script src="js/app-lista_experiencias.js"></script>      
     
     </body>
