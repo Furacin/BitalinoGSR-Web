@@ -6,9 +6,25 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="css/style2.css">
+        
         <title> Datos BitaGSR </title>
         <style>  
+            hr {
+                display: block;
+                height: 1px;
+                border: 0;
+                border-top: 1px solid #50514F;
+                margin: 1em 0;
+                padding: 0; 
+                margin-bottom: 50px;
+            }
             
+            a {
+            color: #000000;
+            }
         </style>
         
 <!--        <link href="css/styles.css" rel="stylesheet" type="text/css">-->
@@ -25,18 +41,38 @@
                   <a class="navbar-brand" href="lista_experiencias.html">Datos BitaGSR</a>
                 </div>
                 <ul class="nav navbar-nav">
+                  <li class="active"><a href="lista_experiencias.html">Inicio</a></li>
                 </ul>
               </div>
         </nav>
         
         
 <!--        <div style="text-align: center">-->
+<!--
         <div class="container">
-<!--                <ul id = "lista"> </ul>-->
-<!--            </div>-->
-            <h1>Usuarios de la Experiencia</h1>
+            <h1>Sujetos de la Experiencia</h1>
                 <div id = "lista" class="list-group">
                 </div>
+        </div>
+-->
+        
+        <div class="container">
+            <div class="row">
+                <section class="content">
+                    <h1>Sujetos de la Experiencia</h1>
+                    <hr>
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="panel panel-default">
+                            <div class="panel">
+                                <table class="table table-filter">
+                                    <tbody id = "lista">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
         
        <script src="js/app-lista_usuarios.js"></script>      

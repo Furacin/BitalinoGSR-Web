@@ -30,64 +30,6 @@ var experiencias = [];
                     console.log(snap.key);
                     const dbRefExperiencias = dbRefObject.child(snap.key).child('Experiencias');
                     dbRefExperiencias.on('child_added', snap => {
-//                        console.log(snap.key);
-                        
-//                        const d = document.createElement('div');
-//                        d.className = 'block';
-//                        
-//                        const a = document.createElement('a');
-//                        var key = snap.key; // nombre de experiencia
-//                    
-//                        const tr = document.createElement('tr');
-//                        const td = document.createElement('td');
-//                        
-//                        a.innerText = key;
-//                        a.href="lista_usuarios.html";
-//                        a.style.fontWeight="bold";
-//                        a.style.fontSize = "large";
-//                        a.className="list-group-item"; 
-//                        a.style.borderColor = "#BEB7A4";
-//                        a.style.borderWidth = "2px";
-//                        a.style.borderRadius = "10px";
-//                        
-//                        var fechaRealizacion = snap.child("fechaRealizacion").val(); 
-//                        var fecha = document.createElement("span");
-//                        fecha.fontWeight="italic";
-//                        fecha.fontStyle="italic";
-//                        fecha.innerHTML = " - " + "<i>" + fechaRealizacion + "</i>";
-//                        
-//                        var terminada = snap.child("pruebaTerminada").val(); 
-//                        var terminadaHTML = document.createElement("span");
-//                        terminadaHTML.fontWeight="bold";
-//                        terminadaHTML.style.fontSize = "14px";
-//                        if (terminada == "si") {
-//                            terminadaHTML.innerHTML = " Finalizada";
-////                            terminadaHTML.style.color="#29BF12";
-//                            a.style.background = "#AEFFBA";
-//                        }
-//                        else {
-//                            terminadaHTML.innerHTML =  " Pendiente";
-////                            terminadaHTML.style.color="#F17300";
-//                            a.style.background = "#E5DC7B";
-//                        }
-//                        
-//                        var descripcion = document.createElement("p");
-//                        descripcion.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in elementum justo. Sed in quam eget mi sodales vestibulum. Proin ut laoreet sapien. Nunc malesuada ullamcorper augue, vel varius quam ornare quis. Donec sodales efficitur velit, a aliquet massa dictum non. Mauris suscipit fermentum sapien in maximus";
-//                        descripcion.style.fontSize = "12px";
-//                        descripcion.style.fontStyle="italic";
-//                        
-//                        a.appendChild(fecha);
-////                        a.appendChild(descripcion);
-//                        a.appendChild(terminadaHTML);
-//                        
-//                        // Tabla Striped
-////                        if (i % 2 == 0) 
-////                            a.style.background = "#E3E4DB";
-//                            
-//                        td.appendChild(a);
-//                        tr.appendChild(td);
-//                        ulList.appendChild(tr);
-//                        i++;
                         
                         var key = snap.key; // nombre de experiencia
                         
@@ -100,8 +42,7 @@ var experiencias = [];
                         var div = document.createElement('div');
                         var a = document.createElement('a');
                         var img = document.createElement('div');
-//                        img.src = "https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg";
-//                        img.className = "foo";
+
                         var i = document.createElement('i');
                         i.style.padding = "8px";
                         img.appendChild(i);
@@ -163,15 +104,9 @@ var experiencias = [];
                         experiencias.push(key);
                         cont++;
                     });
-
+                    
                 }
             });
-    
-    
-//            for (var i = 0; i<experiencias.length; i++) {
-//                console.log(i);
-//                document.getElementById(i).onclick = reply_click; 
-//            }
             
 //            ulList.addEventListener('click', function(e) {
 //                if (e.target.tagName.toLowerCase() === 'td'){
