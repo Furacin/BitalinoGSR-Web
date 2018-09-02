@@ -72,6 +72,7 @@ var experiencias = [];
 //                            img.style.background = "#5cb85c"
                             i.className = "fa fa-users fa-2x";
                             img.style.color = "#5cb85c";
+                            tr.setAttribute("data-status","finalizado");
                         }
                         else {
                             span2.innerHTML = "Pendiente";
@@ -79,6 +80,7 @@ var experiencias = [];
 //                            img.style.background = "#f0ad4e"
                             i.className = "fa fa-users fa-2x";
                             img.style.color = "#f0ad4e";
+                            tr.setAttribute("data-status","pendiente");
                         } 
                         var p = document.createElement('p');
                         p.innerHTML = "Ut enim ad minim veniam, quis nostrud exercitation...";

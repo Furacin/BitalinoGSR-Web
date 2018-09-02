@@ -19,7 +19,7 @@
                 border-top: 1px solid #50514F;
                 margin: 1em 0;
                 padding: 0; 
-                margin-bottom: 50px;
+                margin-bottom: 20px;
             }
             
             a {
@@ -45,6 +45,20 @@
                 sessionStorage.clear();
                 window.location.href = "index.html";
             }
+            
+            $(document).ready(function () {
+                $('.btn-filter').on('click', function () {
+                  var $target = $(this).data('target');
+                  if ($target != 'all') {
+                    $('.table tr').css('display', 'none');
+                    $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
+                  } else {
+                    $('.table tr').css('display', 'none').fadeIn('slow');
+                  }
+                });
+            });
+            
+            
         </script>
     </head>
     
@@ -71,10 +85,21 @@
 
         
         <div class="container">
+            <div class="row" style="text-align:center;">
+                <h3>Listado de experiencias</h3>
+                    <hr>
+            </div>
+            <div class="row" style="padding-bottom:20px; margin-right: 98px;">
+                <div class="pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-success btn-filter" data-target="finalizado" >Finalizada</button>
+								<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
+								<button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
+							</div>
+						</div>
+            </div>
             <div class="row">
                 <section class="content">
-                    <h3>Listado de experiencias</h3>
-                    <hr>
                     <div class="col-md-10 col-md-offset-1">
                         <div class="panel panel-default">
                             <div class="panel">
