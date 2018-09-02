@@ -3,9 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script src="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/js/gijgo.min.js" type="text/javascript"></script>
         <link href="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -59,11 +60,32 @@
                   }
                 });
                 
+//                $('#datepickerInicio').datepicker({
+//                    locale: 'es-es',
+//                    format: 'dd/mm/yyyy',
+//                    uiLibrary: 'bootstrap'
+//                });
+//                $('#datepickerFin').datepicker({
+//                    locale: 'es-es',
+//                    format: 'dd/mm/yyyy',
+//                    uiLibrary: 'bootstrap'
+//                });
+                
                 $('#datepickerInicio').datepicker({
-                  uiLibrary: 'bootstrap'
+                    format: 'dd/mm/yyyy',
+                    uiLibrary: 'bootstrap',
+                    iconsLibrary: 'fontawesome',
+                    maxDate: function () {
+                        return $('#datepickerFin').val();
+                    }
                 });
                 $('#datepickerFin').datepicker({
-                  uiLibrary: 'bootstrap'
+                    format: 'dd/mm/yyyy',
+                    uiLibrary: 'bootstrap',
+                    iconsLibrary: 'fontawesome',
+                    minDate: function () {
+                        return $('#datepickerInicio').val();
+                    }
                 });
                 
             });
@@ -100,30 +122,35 @@
                     <hr>
             </div>
             
-            <div class="row" style="padding-bottom:20px; margin-right: 98px;">
-                <div class="col-md-4">
+            <div class="row" style="padding-bottom:20px;">
+                <div class="col-md-3" style="width: 28%;">
                     <div class="row">
-                        <div class="col-md-3" style="width: 21.8%;">
-                            F. inicio
+                        <div class="col-md-3" style="margin-top: 7px;">
+                            <b>F. inicio</b>
                         </div>
                         <div class="col-md-6">
-                            <input id="datepickerInicio" width="200" />
+                            <input id="datepickerInicio" width="140" />
                         </div>
                     </div>
                     
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3" style="width: 24.2%;">
                     
                     <div class="row">
-                        <div class="col-md-3" style="width: 17%;">
-                            F. fin
+                        <div class="col-md-3" style="margin-top: 7px;">
+                            <b>F. fin</b>
                         </div>
                         <div class="col-md-6">
-                            <input id="datepickerFin" width="200" />
+                            <input id="datepickerFin" width="140" />
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2" style="width: 23.4%; text-align: left;">
+                    <button type="button" class="btn" onclick="resetFecha();"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                    <button type="button" class="btn" onclick="filtroFecha();"><b>Filtro por fecha</b></button>
+                    
+                </div>
+                <div class="col-md-4" style="width: 24.333333%; float: right;">
 							<div class="btn-group">
 								<button type="button" class="btn btn-success btn-filter" data-target="finalizado" >Finalizada</button>
 								<button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
@@ -136,7 +163,7 @@
                     <div class="col-md-10 col-md-offset-1">
                         <div class="panel panel-default">
                             <div class="panel">
-                                <table class="table table-filter">
+                                <table id="tablaExperiencias" class="table table-filter">
                                     <tbody id = "lista">
                                     </tbody>
                                 </table>

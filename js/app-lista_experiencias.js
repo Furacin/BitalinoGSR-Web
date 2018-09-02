@@ -99,6 +99,7 @@ var experiencias = [];
                         
                         td.id = cont;
                         td.onclick = reply_click; 
+                        tr.setAttribute("data-fecha",fechaRealizacion);
                         td.appendChild(link);
                         tr.appendChild(td);
                         ulList.appendChild(tr);
@@ -132,4 +133,40 @@ var reply_click = function()
     sessionStorage.experiencia_seleccionada = experiencias[this.id];
 //    console.log(experiencias[this.id]);
     window.location.href = "lista_usuarios.html";
+}
+
+function filtroFecha() {
+    
+    var fechaInicio = document.getElementById("datepickerInicio").value;
+    var fechaFin = document.getElementById("datepickerFin").value;
+    
+    if (fechaInicio.trim() != '' && fechaFin.trim()!='') {
+        var d = parseInt(fechaInicio.substring(0,2));
+        var m = parseInt(fechaInicio.substring(4,5));
+        var a = parseInt(fechaInicio.substring(6,10));
+        var dateInicio = new Date(a,m,d);
+        d = parseInt(fechaFin.substring(0,2));
+        m = parseInt(fechaFin.substring(4,5));
+        a = parseInt(fechaFin.substring(6,10));
+        var dateFin = new Date(a,m,d);
+
+        var table = document.getElementById("tablaExperiencias");
+        for (var i = 0, row; row = table.rows[i]; i++) {
+            var fechaTD = row.getAttribute("data-fecha");
+            var d = parseInt(fechaTD.substring(0,2));
+            var m = parseInt(fechaTD.substring(4,5));
+            var a = parseInt(fechaTD.substring(6,10));
+            var dateTD = new Date(a,m,d);
+
+            if (dateTD <= dateInicio || dateTD >= fechaFin) {
+                row.style.display = "none";
+            }
+
+        }    
+    }
+}
+
+function resetFecha() {
+    document.getElementById("datepickerInicio").value = "";
+    document.getElementById("datepickerFin").value = "";
 }
