@@ -8,6 +8,9 @@ body {
 .content h1 {
 	text-align: center;
 }
+.content h3 {
+	text-align: center;
+}
 .content .content-footer p {
 	color: #6d6d6d;
     font-size: 12px;
