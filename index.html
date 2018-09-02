@@ -4,8 +4,11 @@
         <meta charset="UTF-8">
         <title> Visualización de datos de las Experiencias en sujetos </title>
         <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <link rel="stylesheet" href="css/style.css">
+        
+        
     </head>
     
     <body>
@@ -27,5 +30,12 @@
         
         <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
         <script src="js/app-login.js"></script>
+        <script>
+                document.body.addEventListener('keydown', function(e) {
+                    if (e.keyCode === 13) {
+                        document.getElementById("btnLogin").click();   
+                    }
+                });
+        </script>
         
     </body>
