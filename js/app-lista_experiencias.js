@@ -136,6 +136,10 @@ var reply_click = function()
 }
 
 function filtroFecha() {
+    var table = document.getElementById("tablaExperiencias");
+    for (var i = 0, row; row = table.rows[i]; i++) {
+        row.style.display = "";
+    }
     
     var fechaInicio = document.getElementById("datepickerInicio").value;
     var fechaFin = document.getElementById("datepickerFin").value;
@@ -150,7 +154,7 @@ function filtroFecha() {
         a = parseInt(fechaFin.substring(6,10));
         var dateFin = new Date(a,m,d);
 
-        var table = document.getElementById("tablaExperiencias");
+//        var table = document.getElementById("tablaExperiencias");
         for (var i = 0, row; row = table.rows[i]; i++) {
             var fechaTD = row.getAttribute("data-fecha");
             var d = parseInt(fechaTD.substring(0,2));
@@ -167,6 +171,12 @@ function filtroFecha() {
 }
 
 function resetFecha() {
+    
+    var table = document.getElementById("tablaExperiencias");
+    for (var i = 0, row; row = table.rows[i]; i++) {
+        row.style.display = "";
+    }
+    
     document.getElementById("datepickerInicio").value = "";
     document.getElementById("datepickerFin").value = "";
 }
