@@ -83,12 +83,46 @@ function NumeroElementos(length) {
 //            user_key = snap.key;
             console.log(snap.key);
             
-            // Obtenemos el tipo de Prueba
-            const tipoPruebaRef = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child("opcion_multimedia");
-            tipoPruebaRef.on('value', snap => {
-                tipoPrueba = snap.val(); 
-            });
+            // Nombre
+            var nombreSujeto = snap.child("Experiencias").child(experiencia).child(usuario).child("nombre").val();
+            // Apellidos
+            var apellidosSujeto = snap.child("Experiencias").child(experiencia).child(usuario).child("apellidos").val();
+            // Fecha de nacimiento
+            var fechaNacimientoSujeto = snap.child("Experiencias").child(experiencia).child(usuario).child("fecha_nacimiento").val();
+            // Sexo
+            var sexoSujeto = snap.child("Experiencias").child(experiencia).child(usuario).child("sexo").val();
+            // Opción multimedia
+            var multimediaSujeto = snap.child("Experiencias").child(experiencia).child(usuario).child("opcion_multimedia").val();
+            // Descripción
+            var descripcionSujeto = snap.child("Experiencias").child(experiencia).child(usuario).child("descripcion").val();
             
+            var p = document.createElement('p');
+            p.innerHTML = "<b>Nombre y apellidos</b>" + ": " + "<i>" + nombreSujeto + " " + apellidosSujeto + "</i>";
+            document.getElementById('nombre').appendChild(p);
+            
+            var p2 = document.createElement('p');
+            p2.innerHTML = "<b>Fecha de Nacimiento</b>" + ": " + "<i>" + fechaNacimientoSujeto + "</i>";
+            document.getElementById('fecha_nacimiento').appendChild(p2);
+            
+            var p3 = document.createElement('p');
+            p3.innerHTML = "<b>Sexo</b>" + ": " + "<i>" + sexoSujeto + "</i>";
+            document.getElementById('sexo').appendChild(p3);
+            
+            var p4 = document.createElement('p');
+            p4.innerHTML = "<b>Multimedia</b>" + ": " + "<i>" + multimediaSujeto + "</i>";
+            document.getElementById('opcion_multimedia').appendChild(p4);
+            
+            var p5 = document.createElement('p');
+            p5.innerHTML = "<b>Descripción</b>" + ": " + "<i>" + descripcionSujeto + "</i>";
+            document.getElementById('descripcion').appendChild(p5);
+            
+            // Obtenemos el tipo de Prueba
+//            const tipoPruebaRef = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child("opcion_multimedia");
+//            tipoPruebaRef.on('value', snap => {
+//                tipoPrueba = snap.val(); 
+//            });
+//            
+            tipoPrueba = multimediaSujeto;
             const dbRefList = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('GSR');
             const dbRefList2 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('FC');
             const dbRefList3 = firebase.database().ref().child('users').child(snap.key).child('Experiencias').child(experiencia).child(usuario).child('Datos Graficas').child('Temperatura');

@@ -103,4 +103,15 @@ hr {
     padding: 0; 
 }
 
+.panel
+{
+    position: relative;
+}
+
+.panel-default > .panel-leftheading
+{
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
 
