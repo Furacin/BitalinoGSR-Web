@@ -230,51 +230,51 @@ function NumeroElementos(length) {
                 });
             });
 
-            dbRefList3.on('value', snap => {
-                var data = snap.val();  
-                dataTemp = data;
-                var ctx = document.getElementById('myChart3').getContext('2d');
-                var labelElementos = NumeroElementos(data.length);
-                window.myChart3 = new Chart(ctx, {
-                  type: 'line',
-                  data: {
-                      labels: labelElementos,
-                    datasets: [{
-                      label: 'Temperatura',
-                      data: data,
-                      backgroundColor: "rgba(255,0,255,0.6)"
-                    }]
-                  },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
-                                }
-                            }]
-                        },
-                        // Container for pan options
-                        pan: {
-                            // Boolean to enable panning
-                            enabled: true,
-
-                            // Panning directions. Remove the appropriate direction to disable 
-                            // Eg. 'y' would only allow panning in the y direction
-                            mode: 'xy'
-                        },
-
-                        // Container for zoom options
-                        zoom: {
-                            // Boolean to enable zooming
-                            enabled: true,
-
-                            // Zooming directions. Remove the appropriate direction to disable 
-                            // Eg. 'y' would only allow zooming in the y direction
-                            mode: 'x',
-                        }
-                    }
-                });
-            });
+//            dbRefList3.on('value', snap => {
+//                var data = snap.val();  
+//                dataTemp = data;
+//                var ctx = document.getElementById('myChart3').getContext('2d');
+//                var labelElementos = NumeroElementos(data.length);
+//                window.myChart3 = new Chart(ctx, {
+//                  type: 'line',
+//                  data: {
+//                      labels: labelElementos,
+//                    datasets: [{
+//                      label: 'Temperatura',
+//                      data: data,
+//                      backgroundColor: "rgba(255,0,255,0.6)"
+//                    }]
+//                  },
+//                    options: {
+//                        scales: {
+//                            yAxes: [{
+//                                ticks: {
+//                                    beginAtZero:true
+//                                }
+//                            }]
+//                        },
+//                        // Container for pan options
+//                        pan: {
+//                            // Boolean to enable panning
+//                            enabled: true,
+//
+//                            // Panning directions. Remove the appropriate direction to disable 
+//                            // Eg. 'y' would only allow panning in the y direction
+//                            mode: 'xy'
+//                        },
+//
+//                        // Container for zoom options
+//                        zoom: {
+//                            // Boolean to enable zooming
+//                            enabled: true,
+//
+//                            // Zooming directions. Remove the appropriate direction to disable 
+//                            // Eg. 'y' would only allow zooming in the y direction
+//                            mode: 'x',
+//                        }
+//                    }
+//                });
+//            });
         }
         
         ///////////////////////////////////////////////////////////////////////////////////////
@@ -346,7 +346,7 @@ function NumeroElementos(length) {
 
 
 function lineaVerticalGSR() {
-    var imageOffset = 430;
+    var imageOffset = 431;
     
             // Duración del vídeo
             var duracionVideo;    
@@ -386,8 +386,7 @@ function lineaVerticalGSR() {
 }
 
 function lineaVerticalFC() {
-    var imageOffset = 410;
-    
+    var imageOffset = 411;
             // Duración del vídeo
             var duracionVideo;    
             var video = document.getElementById("video");
@@ -399,14 +398,16 @@ function lineaVerticalFC() {
             document.getElementById("verticalLineFC").style.left = imageOffset.toString() + "px";
             
             // Obtenemos el valor del slider
-            var slider = document.getElementById("sliderFC");
-            
-            slider.addEventListener('oninput', function(){       
+            var slider2 = document.getElementById("sliderFC");
+            slider2.addEventListener('change', function(){ 
+                console.log(slider2.value);
                 // Vamos desplazando la línea vertical
-                if (slider.value==1) 
+                if (slider2.value==1) 
                     imageOffset = 410
-                else
+                else {
                     imageOffset = 410 + 4.85*parseInt(slider.value)
+                }
+//                console.log(imageOffset);
                 document.getElementById("verticalLineFC").style.left = imageOffset + "px";
                 
                 // Movemos el vídeo

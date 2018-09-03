@@ -257,8 +257,8 @@
                 </div>
             </center>
             
-            <div id="verticalLineGSR" class="vl" style="position:absolute; top:230px; display:none;"></div>
-            <div id="verticalLineFC" class="vl" style="position:absolute; top:518px; display:none;"></div>
+            <div id="verticalLineGSR" class="vl" style="position:absolute; top: 430px;"></div>
+            <div id="verticalLineFC" class="vl" style="position:absolute; top:738px; "></div>
             <div id="verticalLineTemp" class="vl" style="position:absolute; top:805px; display:none;"></div>
 <!--
             <div class="row">
@@ -287,18 +287,18 @@
                     <div class="row" style="width:200%;">
                         <div class="col-xs-6">
                             <canvas id="myChart"></canvas>
-                            <input type="range" name="weight" id="sliderGSR" class="slider" value="0" min="1" max="100"> 
+                            <input type="range" name="weight" id="sliderGSR" class="slider" value="0" min="1" max="100" style="display:none;"> 
                         </div>
 
                     </div>
-
-                    <div class="row" style="width:200%;">
+                    <hr>
+                    <div class="row" style="width:200%; ">
                         <div class="col-xs-6">
                             <canvas id="myChart2"></canvas>
-                            <input type="range" name="weight" id="sliderFC" class="slider" value="0" min="1" max="100"> 
+                            <input type="range" name="weight" id="sliderFC" class="slider" value="0" min="1" max="100" style="display:none;"> 
                         </div>
                     </div>
-
+                    <hr>
                     <div class="row" style="width:200%; display:none;">
                         <div class="col-xs-6">
                             <canvas id="myChart3"></canvas>
@@ -306,7 +306,7 @@
                         </div>
                     </div>
                 </div>
-                
+                                
                 <div class="col-xs-5 panel panel-default" >
                     <div class="panel-body" style="padding:28px;">
                         
@@ -323,7 +323,7 @@
                     </div>
                     <div style="margin:auto; text-align:center; margin-top:25px;">
                         <button type="button" id="btnExcel" class="btnGSR" onclick="exportarExcel()" style="background-color:#99FF9E; font-weight: bold;">
-                             <i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar a Excel
+                             <i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar CSV
                         </button>
                     </div>
                     <br>
@@ -334,9 +334,10 @@
         </div>
 
         <script>
+            
             lineaVerticalGSR();
                 lineaVerticalFC();
-                lineaVerticalTemp();
+//                lineaVerticalTemp();
                 moverLineasPlay();
             //paste this code under the head tag or in a separate js file.
             // Wait for window load
