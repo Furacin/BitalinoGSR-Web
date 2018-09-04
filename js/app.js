@@ -346,7 +346,7 @@ function NumeroElementos(length) {
 
 
 function lineaVerticalGSR() {
-    var imageOffset = 431;
+    var imageOffset = 65;
     
             // Duración del vídeo
             var duracionVideo;    
@@ -367,15 +367,15 @@ function lineaVerticalGSR() {
 //            var y = position.right;
 //            console.log(x);
 //            console.log(y);
-            
+            console.log(imageOffset);
             slider.addEventListener('change', function(){       
                 // Vamos desplazando la línea vertical
                 if (slider.value==1) 
-                    imageOffset = 430
+                    imageOffset = 64
                 else
-                    imageOffset = 430 + 4.65*parseInt(slider.value)
+                    imageOffset = 64 + 0.69*parseInt(slider.value)
                 document.getElementById("verticalLineGSR").style.left = imageOffset + "px";
-                
+                console.log(imageOffset);
                 // Movemos el vídeo
                 // Dividimos la duración del vídeo entre los 100 steps del slider
                 var videoStep = duracionVideo/100
@@ -386,7 +386,7 @@ function lineaVerticalGSR() {
 }
 
 function lineaVerticalFC() {
-    var imageOffset = 411;
+    var imageOffset = 44;
             // Duración del vídeo
             var duracionVideo;    
             var video = document.getElementById("video");
@@ -403,9 +403,9 @@ function lineaVerticalFC() {
                 console.log(slider2.value);
                 // Vamos desplazando la línea vertical
                 if (slider2.value==1) 
-                    imageOffset = 410
+                    imageOffset = 43
                 else {
-                    imageOffset = 410 + 4.85*parseInt(slider.value)
+                    imageOffset = 43 + 0.72*parseInt(slider.value)
                 }
 //                console.log(imageOffset);
                 document.getElementById("verticalLineFC").style.left = imageOffset + "px";
@@ -453,8 +453,8 @@ function lineaVerticalTemp() {
 }
 
 function moverLineasPlay() {    
-    var imageOffsetGSR = 430;
-    var imageOffsetFC = 410;
+    var imageOffsetGSR = 64;
+    var imageOffsetFC = 43;
     var imageOffsetTemp = 405;
     var sliderGSR = document.getElementById("sliderGSR");
     var sliderFC = document.getElementById("sliderFC");
@@ -473,9 +473,9 @@ function moverLineasPlay() {
         var i = 1
         video.ontimeupdate = function() {
             if (video.currentTime >= tiempoStep*i) {      
-                imageOffsetGSR = 430 + 4.65*parseInt(sliderGSR.value)
+                imageOffsetGSR = 64 + 4.65*parseInt(sliderGSR.value)
                 document.getElementById("verticalLineGSR").style.left = imageOffsetGSR + "px";
-                imageOffsetFC = 410 + 4.85*parseInt(sliderFC.value)
+                imageOffsetFC = 43 + 4.85*parseInt(sliderFC.value)
                 document.getElementById("verticalLineFC").style.left = imageOffsetFC + "px";
                 imageOffsetTemp = 405 + 4.9*parseInt(sliderTemp.value)
                 document.getElementById("verticalLineTemp").style.left = imageOffsetTemp + "px";
@@ -495,18 +495,18 @@ function moverLineasPlay() {
                     sliderFC.value = (video.currentTime * 100)/duracion
                     sliderTemp.value = (video.currentTime * 100)/duracion
                     
-                    imageOffsetGSR = 430 + 4.65*parseInt(sliderGSR.value)
+                    imageOffsetGSR = 64 + 4.7*parseInt(sliderGSR.value)
                     document.getElementById("verticalLineGSR").style.right = imageOffsetGSR + "px";
-                    imageOffsetFC = 410 + 4.85*parseInt(sliderFC.value)
+                    imageOffsetFC = 43 + 4.9*parseInt(sliderFC.value)
                     document.getElementById("verticalLineFC").style.right = imageOffsetFC + "px";
                     imageOffsetTemp = 405 + 4.9*parseInt(sliderTemp.value)
                     document.getElementById("verticalLineTemp").style.right = imageOffsetTemp + "px";
                     
                     i = parseInt(((video.currentTime) * 100)/duracion) 
                     if (video.currentTime == 0) {
-                        imageOffsetGSR = 430 
+                        imageOffsetGSR = 64 
                         document.getElementById("verticalLineGSR").style.left = imageOffsetGSR + "px";
-                        imageOffsetFC = 410 
+                        imageOffsetFC = 43 
                         document.getElementById("verticalLineFC").style.left = imageOffsetFC + "px";
                         imageOffsetTemp = 405 
                         document.getElementById("verticalLineTemp").style.left = imageOffsetTemp + "px";
